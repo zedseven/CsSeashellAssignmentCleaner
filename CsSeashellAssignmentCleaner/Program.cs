@@ -9,7 +9,7 @@ namespace CsSeashellAssignmentCleaner
 		private static readonly string[] DisallowedDirectories = { "common" };
 		private static readonly string[] DisallowedFiles = { ".project-settings.txt" };
 		private static readonly string[] DisallowedExtensions = { ".log" };
-		private const string TrashDir = @"C:\Users\Zacc\Documents\CS-136-2020\working-dir\trash";
+		private static string TrashDir;
 
 		private static void Main(string[] args)
 		{
@@ -20,6 +20,9 @@ namespace CsSeashellAssignmentCleaner
 
 			if (!Directory.Exists(dirPath))
 				return;
+
+			TrashDir = Path.Combine(Environment.CurrentDirectory, "trash");
+			Directory.CreateDirectory(TrashDir);
 
 			Console.WriteLine("Trashing the following files:");
 			CleanAssignmentDir(dirPath);
